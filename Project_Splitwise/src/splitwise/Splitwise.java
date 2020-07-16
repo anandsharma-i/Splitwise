@@ -24,9 +24,9 @@ public class Splitwise
 	{
 		Scanner sc = new Scanner(System.in);
 		 Map<String,Long> map = new HashMap<String,Long>(); 
-		 	System.out.println("Enter no. of entries : ");
+		 	System.out.println("Enter no. of entries : ");//No. of persons. 
 		 	int n = sc.nextInt();
-		 	System.out.println("Enter the rate : ");
+		 	System.out.println("Enter the rate : ");//Rate:The required amount an individual needs to pay. 
 	        int r = sc.nextInt();      	        
 	        int i=0,c=0,c1=0,ce=0;
 	        long x=0;
