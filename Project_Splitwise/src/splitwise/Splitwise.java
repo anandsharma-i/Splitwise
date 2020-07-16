@@ -2,24 +2,24 @@ package splitwise;
 import java.util.*;
 public class Splitwise
 {
+	//Debt-Clearing method
 	static long debt_repay(long ep,long sp)
 	{
-		if(ep>sp)
+		if(ep>sp)//if,extra-paid amount > short-paid amount.
 		{
 			return 0;
 		}
-		else if(ep<sp)
+		else if(ep<sp)//if,extra-paid amount < short-paid amount.
 		{
 			
 			return(1);
 		}
-		else
+		else//if,extra-paid amount==short-paid amount.
 		{			
 			return(2);
 		}
 		
-	}
-	static long flag=0;
+	}	
 	public static void main(String[] args) 
 	{
 		Scanner sc = new Scanner(System.in);
@@ -77,11 +77,12 @@ public class Splitwise
 	        	System.out.println((i+1) + ". " + shortage[i]+" - "+(sp[i]));
 	        }	      
 	          	//Debt-Clearing
-	        	for(i=0;i<c1;i++)//Running loop over shortage[] only.
+	        	for(i=0;i<c1;i++)//Running loop over shortage[] only(This will update only sp and not ep).
 	        	{	
+	        		//ce will be used to update ep.Initially ce=0.
 	          		again :
 	          		{		
-		        	    if(ce==c)//If the, No. of shortage payers < No. of extra payers. 
+		        	    if(ce==c)//If the, No. of shortage payers > No. of extra payers. 
 		        	    {
 		        	    	System.out.println("\nThere are no extra payers left!,Clear your debts with the Owner.");
 		        	    	break;
@@ -90,21 +91,40 @@ public class Splitwise
 		        	    {	        	    	
 		        	    	x=debt_repay(ep[ce],sp[i]);//Calling debt_repay()
 		        	    }	        	    
-		        		if(x==0)//Condition 1:
+		        		if(x==0)//Condition 1: ep>sp
 		        		{
+		        			/*In this condition :
+		        			  1.Since sp<ep ,so that ep can be used to fulfill that particular sp.
+		        			  2.So we'll assume sp=0.
+		        			  3.And update ep to ep=ep-sp 
+		        			  */
 		        			System.out.println("\n"+shortage[i]+" - You owe "+sp[i]+" to "+ extra[ce]);
 		        			ep[ce]=ep[ce]-sp[i];	        				        				        		
 		        		}
-		        		else if(x==1)//Condition 2:
+		        		else if(x==1)//Condition 2: ep<sp
 		        		{
+		        			/*In this condition :
+		        			  1.Since ep<sp ,so that ep can't be used to fulfill that particular sp.
+		        			  2.So we'll assume ep=0 and update ep to the next position of extra[].
+		        			  3.And update sp to sp=sp-ep 
+		        			  */
 		        			System.out.println("\n"+shortage[i]+" - You owe "+ep[ce]+" to "+ extra[ce]);
 		        			sp[i]=sp[i]-ep[ce];
 		        			ep[ce]=ep[++ce];
-		        			break again;//Using break as a form of goto to check for all conditions again
-		        			//without iterating 'i' or without jumping to next position of shortage[].
+		        			break again;
+		        			/*1.Using break as a form of goto to check for all conditions again without
+		        			    iterating 'i' or without jumping to next position of shortage[].
+		        			  2.We do that bcoz this particular sp is not fulfilled yet from the particular ep
+		        			  3.So we fulfill sp till whatever point that particular ep can.
+		        			  4.then update sp and ep as as discussed above. */
 		        		}
-		        		else if(x==2)//Condition 3:
+		        		else if(x==2)//Condition 3: ep==sp
 		        		{
+		        			/*In this condition :
+		        			  1.Since sp==ep ,so that ep can be used to fulfill that particular sp.
+		        			  2.So we'll assume sp=0 and ep=0.
+		        			  3.And update ep to the next position of extra[].		        			  
+		        			  */
 		        			System.out.println("\n"+shortage[i]+" - You owe "+sp[i]+" to "+ extra[ce]);
 		        			ep[ce]=ep[++ce];	        			
 		        		}
