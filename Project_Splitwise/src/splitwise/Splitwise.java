@@ -80,7 +80,7 @@ public class Splitwise
 	        	for(i=0;i<c1;i++)//Running loop over shortage[] only(This will update only sp and not ep).
 	        	{	
 	        		//ce will be used to update ep.Initially ce=0.
-	          		again :
+	          		again :  
 	          		{		
 		        	    if(ce==c)//If the, No. of shortage payers > No. of extra payers. 
 		        	    {
