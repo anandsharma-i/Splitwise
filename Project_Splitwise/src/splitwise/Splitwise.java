@@ -24,16 +24,17 @@ public class Splitwise
 	{
 		Scanner sc = new Scanner(System.in);
 		 Map<String,Long> map = new HashMap<String,Long>(); 
-		 	System.out.println("Enter no. of entries : ");
+		 	System.out.println("Enter no. of entries : ");//No. of persons. 
 		 	int n = sc.nextInt();
-		 	System.out.println("Enter the rate : ");
+		 	System.out.println("Enter the rate : ");//Rate:The required amount an individual needs to pay. 
 	        int r = sc.nextInt();      	        
 	        int i=0,c=0,c1=0,ce=0;
 	        long x=0;
-	        long[] ep =new long[50];	
-	        long[] sp =new long[50];
-	        String[] extra = new String[50]; 
-	        String[] shortage = new String[50];
+	        long[] ep =new long[50];//Array to store all extra payments(ep) of extra payers.	
+	        long[] sp =new long[50];//Array to store all shortage payments(sp) of shortage payers.
+	        String[] extra = new String[50];//Array to store all extra payers. 
+	        String[] shortage = new String[50];//Array to store all shortage payers.
+	        //Mapping for all the persons with their amount payed.
 	        for(i=0;i<n;i++)
 	        {
 	        	System.out.println("\nEnter Name : ");	
@@ -42,8 +43,9 @@ public class Splitwise
 	            int paid = sc.nextInt();
 	            map.put(name,(long)paid);	            
 	        }
-	        i=0;
+	        i=0;//Reset i=0 for going to the top of the Map "map".
 	        System.out.println("\n::PAID-LIST::");
+	        //Printing the contents of "map".
 	        for(Map.Entry<String,Long> map2 : map.entrySet())
 	        {
 	        	System.out.print(++i+"." +map2.getKey()+ " : ");
