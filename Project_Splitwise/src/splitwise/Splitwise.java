@@ -28,7 +28,7 @@ public class Splitwise
 		 	int n = sc.nextInt();
 		 	System.out.println("Enter the rate : ");//Rate:The required amount an individual needs to pay. 
 	        int r = sc.nextInt();      	        
-	        int i=0,c=0,c1=0,ce=0;//counter variables for different arrays.
+	        int i=0,c=0,c1=0,ce=0,flag=0,t=0;//counter variables for different arrays.
 	        long x=0;
 	        long[] ep =new long[50];//Array to store all extra-payments(ep) of respective extra payers.	
 	        long[] sp =new long[50];//Array to store all shortage-payments(sp) of respective shortage payers.
@@ -85,7 +85,9 @@ public class Splitwise
 		        	    if(ce==c)//If the, No. of shortage payers > No. of extra payers. 
 		        	    {
 		        	    	System.out.println("\nThere are no extra payers left!,Clear your debts with the Owner.");
-		        	    	break;
+		        	    	flag=1;
+		        	    	t=i;//storing current position of shortage[] in 't'.
+		        	    	break;//Coming Out of loop.
 		        	    }
 		        	    else
 		        	    {	        	    	
@@ -128,8 +130,16 @@ public class Splitwise
 		        			System.out.println("\n"+shortage[i]+" - You owe "+sp[i]+" to "+ extra[ce]);
 		        			ep[ce]=ep[++ce];	        			
 		        		}
-	          		}
-	        	}	        
-		sc.close();
+	          		}	        	
+	        	}	 
+	        	//Printing the rest of left-out short-payers.
+	        	if(flag==1)
+	        	{
+	        		for(i=t;i<c1;i++)
+	        		{
+	        			System.out.println("\n"+shortage[i]+" - You owe "+sp[i]+" to owner.");
+	        		}
+	        	}
+	        	sc.close();
 	}
 }
